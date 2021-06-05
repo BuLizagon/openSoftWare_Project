@@ -2,8 +2,27 @@
 <head>
     <meta charset="UTF-8">
     <title>오픈소프트웨어 프로젝트</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" 
+    crossorigin="anonymous"></script>
+
+    <style>
+        table{text-align: center;}
+        .container{overflow:hidden;}
+        .tab{float: left;}
+        .tab-2{margin-left: 50px;}
+        .tab-2 input{display: block;margin-bottom:20px;}
+        tr{transition: all.25s ease-in-out;}
+        tr:hover{background-color:#EEE;cursor: pointer;}
+    </style>
 </head>
 <body>
+<div id="container">
+<div id="input-form">   
+검색 : <input type="text" id="keyword" placeholder="ex) 이름, 연락처를 입력하시오">
+</div>
+<div class="container">
+    <div class="tab tab-1">
 <table id="table" border="1">
     <thead>
         <tr>
@@ -25,31 +44,97 @@
             <td>010-3125-1241</td>
         </tr>
     </tbody>  
-</table>    
+</table>
+</div>
+    <div class="tab tab-2">
         Name :<input type="text" name="fname" id="fname" placeholder="ex) 홍길동">
         Tel :<input type="text" name="tel" id="tel" placeholder="ex) 010-1234-1234">
 
-
         <button onclick="addHTMLTableRow();">삽입</button>
         <button onclick="editHtmlTbleSelectedRow();">수정</button>
-        <button onclick="removeSelectedRow();">삭제</button>
-    <script>
-    
-        function addHTMLTableRow()
-        {
+        <button onclick="removeSelectedRow();">삭제</button>                
+    </div>
+    <script type="text/javascript">
+            var rIndex,
+                table = document.getElementById("table");
+            
+            
+            function addHTMLTableRow()
+            {// 새로운 행열 생성
+                var newRow = table.insertRow(table.length),
+                    cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    fname = document.getElementById("fname").value,
+                    tel = document.getElementById("tel").value;
                 
-        }
-        function editHtmlTbleSelectedRow()
-        {
+                cell1.innerHTML = fname;
+                cell2.innerHTML = tel;
                 
-        }
-        function removeSelectedRow()
-        {
-                
-        }
-    </script>
-                        
+                //이벤트 새로 행만듬
+                selectedRowToInput();
 
+            }
+            
+    </script>      
+    <script type="text/javascript">
+            var rIndex,
+                table = document.getElementById("table");
+         //선택   
+        function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                        rIndex = this.rowIndex;
+                        document.getElementById("fname").value = this.cells[0].innerHTML;
+                        document.getElementById("tel").value = this.cells[1].innerHTML;               
+                    };
+                }
+            }
+            
+            
+            selectedRowToInput();
+
+            //수정 기능(클릭하여 수정)
+            function editHtmlTbleSelectedRow()
+            {
+                var fname = document.getElementById("fname").value,
+                    tel = document.getElementById("tel").value;
+
+                table.rows[rIndex].cells[0].innerHTML = fname;
+                table.rows[rIndex].cells[1].innerHTML = tel;
+            
+            }
+        </script>
         
+  
+    <script type="text/javascript">
+            var rIndex,
+                table = document.getElementById("table");
+        //제거 기능
+        function removeSelectedRow()
+            {
+                table.deleteRow(rIndex);
+                
+                document.getElementById("fname").value ="" ;
+                document.getElementById("tel").value ="" ;
+            }
+        
+    </script>
+        
+        <script type="text/javascript">
+            //검색 기능
+            $(document).ready(function() {
+                    $("#keyword").keyup(function() {
+                        var k = $(this).val();
+                        $("tr").hide();
+                        var temp = $("tr:contains('" + k + "')");
+                        $(temp).show();
+                    });
+                });
+            </script>                
+
 </body>
 </html>

@@ -79,7 +79,7 @@
     <script type="text/javascript">
             var rIndex,
                 table = document.getElementById("table");
-                
+         //선택   
         function selectedRowToInput()
             {
                 
@@ -97,7 +97,7 @@
             
             selectedRowToInput();
 
-            //수정 기능
+            //수정 기능(클릭하여 수정)
             function editHtmlTbleSelectedRow()
             {
                 var fname = document.getElementById("fname").value,
@@ -113,6 +113,7 @@
     <script type="text/javascript">
             var rIndex,
                 table = document.getElementById("table");
+        //제거 기능
         function removeSelectedRow()
             {
                 table.deleteRow(rIndex);
@@ -124,6 +125,7 @@
     </script>
         
         <script type="text/javascript">
+            //검색 기능
             $(document).ready(function() {
                     $("#keyword").keyup(function() {
                         var k = $(this).val();

@@ -2,40 +2,53 @@
 <head>
     <meta charset="UTF-8">
     <title>오픈소프트웨어 프로젝트</title>
+    
+    <style>
+        table{text-align: center;}
+        .container{overflow:hidden;}
+        .tab{float: left;}
+        .tab-2{margin-left: 50px;}
+        .tab-2 input{display: block;margin-bottom:20px;}
+        tr{transition: all.25s ease-in-out;}
+        tr:hover{background-color:#EEE;cursor: pointer;}
+    </style>
 </head>
 <body>
- 
-검색 : <input type="text" id="keyword">
-
-<br>
-<table id="table" border="1">
-    <thead>
-        <tr>
-            <th>이름</th>
-            <th>전화번호</th>
-        </tr>
-    </thead>
-     <tbody>    
-        <tr>
-            <td>정재영</td>
-            <td>010-3812-5121</td>
-        </tr>
-        <tr>
-            <td>최예준</td>
-            <td>010-3125-6123</td>
-        </tr>
-        <tr>
-            <td>허세영</td>
-            <td>010-3125-1241</td>
-        </tr>
+<div class="container">
+<div class="tab tab-1">
+    <table id="table" border="1">
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>    
+            <tr>
+                <td>정재영</td>
+                <td>010-3812-5121</td>
+            </tr>
+            <tr>
+                <td>최예준</td>
+                <td>010-3125-6123</td>
+            </tr>
+            <tr>
+                <td>허세영</td>
+                <td>010-3125-1241</td>
+            </tr>
     </tbody>  
-</table>    
-    <div>
+</table>
+</div>
+    <div class="tab tab-2">
+
         Name :<input type="text" name="fname" id="fname" placeholder="ex) 홍길동">
         Tel :<input type="text" name="tel" id="tel" placeholder="ex) 010-1234-1234">
 
         <button onclick="addHTMLTableRow();">삽입</button>
         <button onclick="editHtmlTbleSelectedRow();">수정</button>
+
+
+
         <button onclick="removeSelectedRow();">삭제</button>                
     </div>
     <script type="text/javascript">
@@ -50,6 +63,7 @@
                     cell2 = newRow.insertCell(1),
                     fname = document.getElementById("fname").value,
                     tel = document.getElementById("tel").value;
+
                 
                 cell1.innerHTML = fname;
                 cell2.innerHTML = tel;

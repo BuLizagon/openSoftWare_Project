@@ -29,27 +29,41 @@
         Name :<input type="text" name="fname" id="fname" placeholder="ex) 홍길동">
         Tel :<input type="text" name="tel" id="tel" placeholder="ex) 010-1234-1234">
 
-
         <button onclick="addHTMLTableRow();">삽입</button>
         <button onclick="editHtmlTbleSelectedRow();">수정</button>
         <button onclick="removeSelectedRow();">삭제</button>
-    <script>
-    
-        function addHTMLTableRow()
-        {
-                
-        }
-        function editHtmlTbleSelectedRow()
-        {
-                
-        }
-        function removeSelectedRow()
-        {
-                
-        }
-    </script>
-                        
-
         
+    <script type="text/javascript">
+            var rIndex,
+                table = document.getElementById("table");
+                
+        function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                        rIndex = this.rowIndex;
+                        document.getElementById("fname").value = this.cells[0].innerHTML;
+                        document.getElementById("tel").value = this.cells[1].innerHTML;               
+                    };
+                }
+            }
+            
+            
+            selectedRowToInput();
+
+            //수정 기능
+            function editHtmlTbleSelectedRow()
+            {
+                var fname = document.getElementById("fname").value,
+                    tel = document.getElementById("tel").value;
+
+                table.rows[rIndex].cells[0].innerHTML = fname;
+                table.rows[rIndex].cells[1].innerHTML = tel;
+            
+            }
+        </script>
 </body>
 </html>
